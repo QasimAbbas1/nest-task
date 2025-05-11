@@ -48,6 +48,9 @@ docker-compose up --build
 
 The API will be available at http://localhost:3000
 
+
+3. Fallback: Can also be started without docker using "npm start"
+
 ### Running Tests
 
 ```bash
@@ -81,3 +84,13 @@ npm test
 - status (enum: 'OPEN' | 'IN_PROGRESS' | 'DONE')
 - user (relation to User)
 - userId (string)
+
+
+
+<!-- DESIGN DECISION -->
+The application employs a robust security-focused design, utilizing UUID primary keys instead of sequential IDs to prevent enumeration attacks and enhance data privacy. Passport.js with JWT strategy provides flexible authentication, allowing stateless, scalable auth management through token-based sessions that work seamlessly across different clients. The system implements role-based access control (RBAC) with distinct user and admin roles, providing strong data isolation where regular users can only access their own tasks while admins have broader system visibility.The architecture follows clean separation of concerns with dedicated modules for authentication, users, and tasks, each containing focused controllers and services.
+
+<!-- AREAS OF IMPROVMENT -->
+Not adding new features here but mentioning those that are generally covered in task description but not specified specifically.
+1. Currently Admin role is set as Database Level, while it can be setup over endpoint,
+2. Add ability for admins to manage users, update roles etc.
